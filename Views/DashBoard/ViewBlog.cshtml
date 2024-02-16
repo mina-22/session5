@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Blog>
+@{
+    Layout = "_DashBoard";
+}
+<div class="top">
+    <i class="uil uil-bars sidebar-toggle"></i>
+
+    <div class="search-box">
+        <i class="uil uil-search"></i>
+        <input type="text" placeholder="Search here...">
+    </div>
+
+    <img src="images/profile.jpg" alt="">
+</div>
+
+<div class="dash-content">
+    <div class="overview">
+        <div class="title">
+            <i class="uil uil-tachometer-fast-alt"></i>
+            <span class="text">All Product</span>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="table-light">id</td>
+                    <td class="table-light">Name</td>
+                    <td class="table-light">Description</td>
+                    <td class="table-light">Enable</td>
+                    <td class="table-light">type</td>
+                    <td class="table-light">operation</td>
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @{
+                    foreach (var b in Model)
+                            {
+                        <tr>
+                        <td>@b.Id</td>
+                            <td>@b.Name</td>
+                            <td>@b.Discription</td>
+                            <td>@b.Enable</td>
+                            @if (b.TypeId == 1)
+                            {
+                                <td>Romantic</td>
+                            }
+                            else
+                            {
+                                <td>Action</td>
+                            }
+                            <td>
+
+
+                                <a class="btn btn-success" role="button" asp-action="AddBlog" asp-route-id="@b.Id">
+                                    <span class="material-symbols-outlined">
+                                        Update
+                                    </span>
+                                </a>
+                                <a class="btn btn-danger " role="button" asp-action="Delete" asp-route-id="@b.Id">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    }
+                }
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+    </div>
